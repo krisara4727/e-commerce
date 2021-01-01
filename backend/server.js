@@ -6,6 +6,7 @@ import productRouter from './routers/productRouter.js';
 import orderRouter from './routers/orderRouter.js';
 import uploadRouter from './routers/uploadRouter.js';
 import path from 'path';
+import cors from 'cors';
 
 dotenv.config();
 const app = express();
@@ -18,7 +19,7 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/e-commerce',{
     useUnifiedTopology:true,
     useCreateIndex:true
 });
-
+app.use(cors());
 app.use('/api/uploads', uploadRouter);
 app.use('/api/orders',orderRouter);
 app.use('/api/users',userRouter);
